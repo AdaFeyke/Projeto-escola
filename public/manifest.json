@@ -1,0 +1,26 @@
+{
+  "background_color": "#ffffff",
+  "description": "Gestão escolar profissional",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Escola",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Escola",
+  "start_url": "/",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "https://projeto-escola-lime.vercel.app/icons/launchericon-512x512.png",
+      "sizes": "512x512",
+      "isSquare": true,
+      "isPng": true,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 512,
+      "is512x512": true,
+      "is256x256": false,
+      "is192x192": false
+    }
+  ]
+}

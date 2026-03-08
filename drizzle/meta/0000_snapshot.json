@@ -1,0 +1,3521 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.VerificationToken": {
+      "name": "VerificationToken",
+      "schema": "",
+      "columns": {
+        "identifier": {
+          "name": "identifier",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "token": {
+          "name": "token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires": {
+          "name": "expires",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "VerificationToken_identifier_token_key": {
+          "name": "VerificationToken_identifier_token_key",
+          "columns": [
+            {
+              "expression": "identifier",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "token",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "VerificationToken_token_key": {
+          "name": "VerificationToken_token_key",
+          "columns": [
+            {
+              "expression": "token",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Conta": {
+      "name": "Conta",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "provider": {
+          "name": "provider",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "providerAccountId": {
+          "name": "providerAccountId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "refresh_token": {
+          "name": "refresh_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "access_token": {
+          "name": "access_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "token_type": {
+          "name": "token_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "scope": {
+          "name": "scope",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_token": {
+          "name": "id_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "session_state": {
+          "name": "session_state",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "Conta_provider_providerAccountId_key": {
+          "name": "Conta_provider_providerAccountId_key",
+          "columns": [
+            {
+              "expression": "provider",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "providerAccountId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Conta_userId_fkey": {
+          "name": "Conta_userId_fkey",
+          "tableFrom": "Conta",
+          "tableTo": "User",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Sessao": {
+      "name": "Sessao",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "sessionToken": {
+          "name": "sessionToken",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires": {
+          "name": "expires",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "Sessao_sessionToken_key": {
+          "name": "Sessao_sessionToken_key",
+          "columns": [
+            {
+              "expression": "sessionToken",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Sessao_userId_fkey": {
+          "name": "Sessao_userId_fkey",
+          "tableFrom": "Sessao",
+          "tableTo": "User",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.UserEscola": {
+      "name": "UserEscola",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "papel": {
+          "name": "papel",
+          "type": "PapelUsuario",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'ALUNO'"
+        },
+        "criadoEm": {
+          "name": "criadoEm",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {
+        "UserEscola_userId_escolaId_key": {
+          "name": "UserEscola_userId_escolaId_key",
+          "columns": [
+            {
+              "expression": "userId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "UserEscola_userId_fkey": {
+          "name": "UserEscola_userId_fkey",
+          "tableFrom": "UserEscola",
+          "tableTo": "User",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "UserEscola_escolaId_fkey": {
+          "name": "UserEscola_escolaId_fkey",
+          "tableFrom": "UserEscola",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Escola": {
+      "name": "Escola",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cnpj": {
+          "name": "cnpj",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "endereco": {
+          "name": "endereco",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "telefone": {
+          "name": "telefone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {
+        "Escola_cnpj_key": {
+          "name": "Escola_cnpj_key",
+          "columns": [
+            {
+              "expression": "cnpj",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Serie": {
+      "name": "Serie",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "Serie_nome_escolaId_key": {
+          "name": "Serie_nome_escolaId_key",
+          "columns": [
+            {
+              "expression": "nome",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Serie_escolaId_fkey": {
+          "name": "Serie_escolaId_fkey",
+          "tableFrom": "Serie",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Turma": {
+      "name": "Turma",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "codigo": {
+          "name": "codigo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "serieId": {
+          "name": "serieId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "anoLetivoId": {
+          "name": "anoLetivoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "Turma_codigo_escolaId_key": {
+          "name": "Turma_codigo_escolaId_key",
+          "columns": [
+            {
+              "expression": "codigo",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Turma_codigo_key": {
+          "name": "Turma_codigo_key",
+          "columns": [
+            {
+              "expression": "codigo",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Turma_nome_serieId_anoLetivoId_escolaId_key": {
+          "name": "Turma_nome_serieId_anoLetivoId_escolaId_key",
+          "columns": [
+            {
+              "expression": "nome",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "serieId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "anoLetivoId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Turma_serieId_fkey": {
+          "name": "Turma_serieId_fkey",
+          "tableFrom": "Turma",
+          "tableTo": "Serie",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "serieId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        },
+        "Turma_anoLetivoId_fkey": {
+          "name": "Turma_anoLetivoId_fkey",
+          "tableFrom": "Turma",
+          "tableTo": "AnoLetivo",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "anoLetivoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        },
+        "Turma_escolaId_fkey": {
+          "name": "Turma_escolaId_fkey",
+          "tableFrom": "Turma",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Frequencia": {
+      "name": "Frequencia",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "data": {
+          "name": "data",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "observacao": {
+          "name": "observacao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "alunoId": {
+          "name": "alunoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "turmaDisciplinaId": {
+          "name": "turmaDisciplinaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "StatusFrequencia",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'PRESENTE'"
+        }
+      },
+      "indexes": {
+        "Frequencia_alunoId_turmaDisciplinaId_data_key": {
+          "name": "Frequencia_alunoId_turmaDisciplinaId_data_key",
+          "columns": [
+            {
+              "expression": "alunoId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "timestamp_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "turmaDisciplinaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "data",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "timestamp_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Frequencia_alunoId_fkey": {
+          "name": "Frequencia_alunoId_fkey",
+          "tableFrom": "Frequencia",
+          "tableTo": "Aluno",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "alunoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        },
+        "Frequencia_turmaDisciplinaId_fkey": {
+          "name": "Frequencia_turmaDisciplinaId_fkey",
+          "tableFrom": "Frequencia",
+          "tableTo": "TurmaDisciplina",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "turmaDisciplinaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.User": {
+      "name": "User",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "emailVerificado": {
+          "name": "emailVerificado",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imagem": {
+          "name": "imagem",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "senhaHash": {
+          "name": "senhaHash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dataHoraCadastro": {
+          "name": "dataHoraCadastro",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "deletedAt": {
+          "name": "deletedAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "Status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'ATIVO'"
+        },
+        "dataNascimento": {
+          "name": "dataNascimento",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "User_email_key": {
+          "name": "User_email_key",
+          "columns": [
+            {
+              "expression": "email",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Professor": {
+      "name": "Professor",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "usuarioId": {
+          "name": "usuarioId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cpf": {
+          "name": "cpf",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dataFimContrato": {
+          "name": "dataFimContrato",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dataInicioContrato": {
+          "name": "dataInicioContrato",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "salarioBase": {
+          "name": "salarioBase",
+          "type": "numeric(65, 30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipoContrato": {
+          "name": "tipoContrato",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "Professor_cpf_key": {
+          "name": "Professor_cpf_key",
+          "columns": [
+            {
+              "expression": "cpf",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Professor_usuarioId_key": {
+          "name": "Professor_usuarioId_key",
+          "columns": [
+            {
+              "expression": "usuarioId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Professor_usuarioId_fkey": {
+          "name": "Professor_usuarioId_fkey",
+          "tableFrom": "Professor",
+          "tableTo": "User",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "usuarioId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.TurmaDisciplina": {
+      "name": "TurmaDisciplina",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "turmaId": {
+          "name": "turmaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "disciplinaId": {
+          "name": "disciplinaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "professorId": {
+          "name": "professorId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "alunoId": {
+          "name": "alunoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "TurmaDisciplina_turmaId_disciplinaId_key": {
+          "name": "TurmaDisciplina_turmaId_disciplinaId_key",
+          "columns": [
+            {
+              "expression": "turmaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "disciplinaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "TurmaDisciplina_turmaId_fkey": {
+          "name": "TurmaDisciplina_turmaId_fkey",
+          "tableFrom": "TurmaDisciplina",
+          "tableTo": "Turma",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "turmaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "TurmaDisciplina_disciplinaId_fkey": {
+          "name": "TurmaDisciplina_disciplinaId_fkey",
+          "tableFrom": "TurmaDisciplina",
+          "tableTo": "Disciplina",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "disciplinaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "TurmaDisciplina_professorId_fkey": {
+          "name": "TurmaDisciplina_professorId_fkey",
+          "tableFrom": "TurmaDisciplina",
+          "tableTo": "Professor",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "professorId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "TurmaDisciplina_alunoId_fkey": {
+          "name": "TurmaDisciplina_alunoId_fkey",
+          "tableFrom": "TurmaDisciplina",
+          "tableTo": "Aluno",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "alunoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Disciplina": {
+      "name": "Disciplina",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sigla": {
+          "name": "sigla",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "Disciplina_nome_escolaId_key": {
+          "name": "Disciplina_nome_escolaId_key",
+          "columns": [
+            {
+              "expression": "nome",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Disciplina_sigla_escolaId_key": {
+          "name": "Disciplina_sigla_escolaId_key",
+          "columns": [
+            {
+              "expression": "sigla",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Disciplina_escolaId_fkey": {
+          "name": "Disciplina_escolaId_fkey",
+          "tableFrom": "Disciplina",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Nota": {
+      "name": "Nota",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "valor": {
+          "name": "valor",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descricao": {
+          "name": "descricao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dataLancamento": {
+          "name": "dataLancamento",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "alunoId": {
+          "name": "alunoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "professorId": {
+          "name": "professorId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "turmaDisciplinaId": {
+          "name": "turmaDisciplinaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "atividadeTurmaId": {
+          "name": "atividadeTurmaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Nota_alunoId_fkey": {
+          "name": "Nota_alunoId_fkey",
+          "tableFrom": "Nota",
+          "tableTo": "Aluno",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "alunoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "Nota_professorId_fkey": {
+          "name": "Nota_professorId_fkey",
+          "tableFrom": "Nota",
+          "tableTo": "Professor",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "professorId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "Nota_turmaDisciplinaId_fkey": {
+          "name": "Nota_turmaDisciplinaId_fkey",
+          "tableFrom": "Nota",
+          "tableTo": "TurmaDisciplina",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "turmaDisciplinaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "Nota_atividadeTurmaId_fkey": {
+          "name": "Nota_atividadeTurmaId_fkey",
+          "tableFrom": "Nota",
+          "tableTo": "AtividadeTurma",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "atividadeTurmaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Aluno": {
+      "name": "Aluno",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "usuarioId": {
+          "name": "usuarioId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "anoTransferido": {
+          "name": "anoTransferido",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "escolaTransferida": {
+          "name": "escolaTransferida",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nacionalidade": {
+          "name": "nacionalidade",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "naturalidade": {
+          "name": "naturalidade",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bairroEndereco": {
+          "name": "bairroEndereco",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cep": {
+          "name": "cep",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cidadeEndereco": {
+          "name": "cidadeEndereco",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "estadoEndereco": {
+          "name": "estadoEndereco",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "numeroEndereco": {
+          "name": "numeroEndereco",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ruaEndereco": {
+          "name": "ruaEndereco",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "Aluno_usuarioId_key": {
+          "name": "Aluno_usuarioId_key",
+          "columns": [
+            {
+              "expression": "usuarioId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Aluno_usuarioId_fkey": {
+          "name": "Aluno_usuarioId_fkey",
+          "tableFrom": "Aluno",
+          "tableTo": "User",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "usuarioId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.AnoLetivo": {
+      "name": "AnoLetivo",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "ano": {
+          "name": "ano",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "anoAtual": {
+          "name": "anoAtual",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {
+        "AnoLetivo_ano_escolaId_key": {
+          "name": "AnoLetivo_ano_escolaId_key",
+          "columns": [
+            {
+              "expression": "ano",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "int4_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "int4_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "AnoLetivo_escolaId_fkey": {
+          "name": "AnoLetivo_escolaId_fkey",
+          "tableFrom": "AnoLetivo",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.QuestionarioPergunta": {
+      "name": "QuestionarioPergunta",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pergunta": {
+          "name": "pergunta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ativa": {
+          "name": "ativa",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "criadoEm": {
+          "name": "criadoEm",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "alunoId": {
+          "name": "alunoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "QuestionarioPergunta_escolaId_fkey": {
+          "name": "QuestionarioPergunta_escolaId_fkey",
+          "tableFrom": "QuestionarioPergunta",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        },
+        "QuestionarioPergunta_alunoId_fkey": {
+          "name": "QuestionarioPergunta_alunoId_fkey",
+          "tableFrom": "QuestionarioPergunta",
+          "tableTo": "Aluno",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "alunoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.QuestionarioResposta": {
+      "name": "QuestionarioResposta",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "alunoId": {
+          "name": "alunoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "perguntaId": {
+          "name": "perguntaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "resposta": {
+          "name": "resposta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dataRegistro": {
+          "name": "dataRegistro",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {
+        "QuestionarioResposta_alunoId_perguntaId_key": {
+          "name": "QuestionarioResposta_alunoId_perguntaId_key",
+          "columns": [
+            {
+              "expression": "alunoId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "perguntaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "QuestionarioResposta_alunoId_fkey": {
+          "name": "QuestionarioResposta_alunoId_fkey",
+          "tableFrom": "QuestionarioResposta",
+          "tableTo": "Aluno",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "alunoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "QuestionarioResposta_perguntaId_fkey": {
+          "name": "QuestionarioResposta_perguntaId_fkey",
+          "tableFrom": "QuestionarioResposta",
+          "tableTo": "QuestionarioPergunta",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "perguntaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.ResponsavelAluno": {
+      "name": "ResponsavelAluno",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "alunoId": {
+          "name": "alunoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "parentesco": {
+          "name": "parentesco",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "telefone": {
+          "name": "telefone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ResponsavelAluno_alunoId_fkey": {
+          "name": "ResponsavelAluno_alunoId_fkey",
+          "tableFrom": "ResponsavelAluno",
+          "tableTo": "Aluno",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "alunoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Matricula": {
+      "name": "Matricula",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "alunoId": {
+          "name": "alunoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "turmaId": {
+          "name": "turmaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "StatusMatricula",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'ATIVA'"
+        },
+        "dataMatricula": {
+          "name": "dataMatricula",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "dataFim": {
+          "name": "dataFim",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "numero": {
+          "name": "numero",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sequencial": {
+          "name": "sequencial",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "Matricula_numero_key": {
+          "name": "Matricula_numero_key",
+          "columns": [
+            {
+              "expression": "numero",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Matricula_turmaId_sequencial_key": {
+          "name": "Matricula_turmaId_sequencial_key",
+          "columns": [
+            {
+              "expression": "turmaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "int4_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "sequencial",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "int4_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Matricula_alunoId_fkey": {
+          "name": "Matricula_alunoId_fkey",
+          "tableFrom": "Matricula",
+          "tableTo": "Aluno",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "alunoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        },
+        "Matricula_turmaId_fkey": {
+          "name": "Matricula_turmaId_fkey",
+          "tableFrom": "Matricula",
+          "tableTo": "Turma",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "turmaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Pendencia": {
+      "name": "Pendencia",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "alunoId": {
+          "name": "alunoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "valor": {
+          "name": "valor",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descricao": {
+          "name": "descricao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dataVencimento": {
+          "name": "dataVencimento",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "StatusFinanceiro",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'PENDENTE'"
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "TipoPendencia",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'EVENTO'"
+        },
+        "mesReferencia": {
+          "name": "mesReferencia",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "anoReferencia": {
+          "name": "anoReferencia",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {
+        "Pendencia_alunoId_idx": {
+          "name": "Pendencia_alunoId_idx",
+          "columns": [
+            {
+              "expression": "alunoId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Pendencia_alunoId_mesReferencia_anoReferencia_tipo_key": {
+          "name": "Pendencia_alunoId_mesReferencia_anoReferencia_tipo_key",
+          "columns": [
+            {
+              "expression": "alunoId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "int4_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "mesReferencia",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "int4_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "anoReferencia",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "int4_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "tipo",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "enum_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Pendencia_escolaId_idx": {
+          "name": "Pendencia_escolaId_idx",
+          "columns": [
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Pendencia_alunoId_fkey": {
+          "name": "Pendencia_alunoId_fkey",
+          "tableFrom": "Pendencia",
+          "tableTo": "Aluno",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "alunoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "Pendencia_escolaId_fkey": {
+          "name": "Pendencia_escolaId_fkey",
+          "tableFrom": "Pendencia",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Evento": {
+      "name": "Evento",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descricao": {
+          "name": "descricao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dataEvento": {
+          "name": "dataEvento",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "local": {
+          "name": "local",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "valor": {
+          "name": "valor",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'0'"
+        },
+        "vagas": {
+          "name": "vagas",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dataLimite": {
+          "name": "dataLimite",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "criadoEm": {
+          "name": "criadoEm",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {
+        "Evento_escolaId_idx": {
+          "name": "Evento_escolaId_idx",
+          "columns": [
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Evento_escolaId_fkey": {
+          "name": "Evento_escolaId_fkey",
+          "tableFrom": "Evento",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.ParticipanteEvento": {
+      "name": "ParticipanteEvento",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventoId": {
+          "name": "eventoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "alunoId": {
+          "name": "alunoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "confirmado": {
+          "name": "confirmado",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "dataConfirmacao": {
+          "name": "dataConfirmacao",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "pendenciaId": {
+          "name": "pendenciaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "ParticipanteEvento_eventoId_alunoId_key": {
+          "name": "ParticipanteEvento_eventoId_alunoId_key",
+          "columns": [
+            {
+              "expression": "eventoId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "alunoId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "ParticipanteEvento_pendenciaId_key": {
+          "name": "ParticipanteEvento_pendenciaId_key",
+          "columns": [
+            {
+              "expression": "pendenciaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "ParticipanteEvento_eventoId_fkey": {
+          "name": "ParticipanteEvento_eventoId_fkey",
+          "tableFrom": "ParticipanteEvento",
+          "tableTo": "Evento",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "eventoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "ParticipanteEvento_alunoId_fkey": {
+          "name": "ParticipanteEvento_alunoId_fkey",
+          "tableFrom": "ParticipanteEvento",
+          "tableTo": "Aluno",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "alunoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "ParticipanteEvento_pendenciaId_fkey": {
+          "name": "ParticipanteEvento_pendenciaId_fkey",
+          "tableFrom": "ParticipanteEvento",
+          "tableTo": "Pendencia",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "pendenciaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.CalendarioEscolar": {
+      "name": "CalendarioEscolar",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "anoLetivoId": {
+          "name": "anoLetivoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dataInicio": {
+          "name": "dataInicio",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dataFim": {
+          "name": "dataFim",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "TipoDia",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'LETIVO_EXTRA'"
+        },
+        "bloqueiaAula": {
+          "name": "bloqueiaAula",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {
+        "CalendarioEscolar_escolaId_anoLetivoId_idx": {
+          "name": "CalendarioEscolar_escolaId_anoLetivoId_idx",
+          "columns": [
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "anoLetivoId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "CalendarioEscolar_escolaId_fkey": {
+          "name": "CalendarioEscolar_escolaId_fkey",
+          "tableFrom": "CalendarioEscolar",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "CalendarioEscolar_anoLetivoId_fkey": {
+          "name": "CalendarioEscolar_anoLetivoId_fkey",
+          "tableFrom": "CalendarioEscolar",
+          "tableTo": "AnoLetivo",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "anoLetivoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Pagamento": {
+      "name": "Pagamento",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "pendenciaId": {
+          "name": "pendenciaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "metodo": {
+          "name": "metodo",
+          "type": "MetodoPagamento",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "valorPago": {
+          "name": "valorPago",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dataPagamento": {
+          "name": "dataPagamento",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "comprovanteUrl": {
+          "name": "comprovanteUrl",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "transacaoId": {
+          "name": "transacaoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "adminId": {
+          "name": "adminId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "Pagamento_dataPagamento_idx": {
+          "name": "Pagamento_dataPagamento_idx",
+          "columns": [
+            {
+              "expression": "dataPagamento",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "timestamp_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Pagamento_escolaId_idx": {
+          "name": "Pagamento_escolaId_idx",
+          "columns": [
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Pagamento_pendenciaId_key": {
+          "name": "Pagamento_pendenciaId_key",
+          "columns": [
+            {
+              "expression": "pendenciaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Pagamento_pendenciaId_fkey": {
+          "name": "Pagamento_pendenciaId_fkey",
+          "tableFrom": "Pagamento",
+          "tableTo": "Pendencia",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "pendenciaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        },
+        "Pagamento_escolaId_fkey": {
+          "name": "Pagamento_escolaId_fkey",
+          "tableFrom": "Pagamento",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Alerta": {
+      "name": "Alerta",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mensagem": {
+          "name": "mensagem",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "TipoAlerta",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'INFO'"
+        },
+        "papel": {
+          "name": "papel",
+          "type": "PapelUsuario",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ativo": {
+          "name": "ativo",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {
+        "Alerta_ativo_papel_idx": {
+          "name": "Alerta_ativo_papel_idx",
+          "columns": [
+            {
+              "expression": "ativo",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "bool_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "papel",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "bool_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Alerta_expiresAt_idx": {
+          "name": "Alerta_expiresAt_idx",
+          "columns": [
+            {
+              "expression": "expiresAt",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "timestamp_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.AtividadeTurma": {
+      "name": "AtividadeTurma",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descricao": {
+          "name": "descricao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "data": {
+          "name": "data",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "TipoAtividade",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "turmaId": {
+          "name": "turmaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cicloId": {
+          "name": "cicloId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "disciplinaId": {
+          "name": "disciplinaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "valorMaximo": {
+          "name": "valorMaximo",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 10
+        }
+      },
+      "indexes": {
+        "AtividadeTurma_turmaId_data_idx": {
+          "name": "AtividadeTurma_turmaId_data_idx",
+          "columns": [
+            {
+              "expression": "turmaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "data",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "AtividadeTurma_turmaId_fkey": {
+          "name": "AtividadeTurma_turmaId_fkey",
+          "tableFrom": "AtividadeTurma",
+          "tableTo": "Turma",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "turmaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        },
+        "AtividadeTurma_cicloId_fkey": {
+          "name": "AtividadeTurma_cicloId_fkey",
+          "tableFrom": "AtividadeTurma",
+          "tableTo": "CicloLetivo",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "cicloId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "AtividadeTurma_disciplinaId_fkey": {
+          "name": "AtividadeTurma_disciplinaId_fkey",
+          "tableFrom": "AtividadeTurma",
+          "tableTo": "Disciplina",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "disciplinaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.CicloLetivo": {
+      "name": "CicloLetivo",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dataInicio": {
+          "name": "dataInicio",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dataFim": {
+          "name": "dataFim",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "anoLetivoId": {
+          "name": "anoLetivoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pontuacaoMaxima": {
+          "name": "pontuacaoMaxima",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 10
+        }
+      },
+      "indexes": {
+        "CicloLetivo_escolaId_anoLetivoId_idx": {
+          "name": "CicloLetivo_escolaId_anoLetivoId_idx",
+          "columns": [
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            },
+            {
+              "expression": "anoLetivoId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "CicloLetivo_escolaId_fkey": {
+          "name": "CicloLetivo_escolaId_fkey",
+          "tableFrom": "CicloLetivo",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        },
+        "CicloLetivo_anoLetivoId_fkey": {
+          "name": "CicloLetivo_anoLetivoId_fkey",
+          "tableFrom": "CicloLetivo",
+          "tableTo": "AnoLetivo",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "anoLetivoId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public._prisma_migrations": {
+      "name": "_prisma_migrations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(36)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "checksum": {
+          "name": "checksum",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "finished_at": {
+          "name": "finished_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "migration_name": {
+          "name": "migration_name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "logs": {
+          "name": "logs",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rolled_back_at": {
+          "name": "rolled_back_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "started_at": {
+          "name": "started_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "applied_steps_count": {
+          "name": "applied_steps_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.Planejamento": {
+      "name": "Planejamento",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "objetivos": {
+          "name": "objetivos",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "data": {
+          "name": "data",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "turmaId": {
+          "name": "turmaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "professorId": {
+          "name": "professorId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "atividade": {
+          "name": "atividade",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "conteudo": {
+          "name": "conteudo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diario": {
+          "name": "diario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "metodologia": {
+          "name": "metodologia",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "observacoes": {
+          "name": "observacoes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "StatusPlanejamento",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'PENDENTE'"
+        }
+      },
+      "indexes": {
+        "Planejamento_escolaId_idx": {
+          "name": "Planejamento_escolaId_idx",
+          "columns": [
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Planejamento_status_idx": {
+          "name": "Planejamento_status_idx",
+          "columns": [
+            {
+              "expression": "status",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "enum_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "Planejamento_turmaId_idx": {
+          "name": "Planejamento_turmaId_idx",
+          "columns": [
+            {
+              "expression": "turmaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "Planejamento_turmaId_fkey": {
+          "name": "Planejamento_turmaId_fkey",
+          "tableFrom": "Planejamento",
+          "tableTo": "Turma",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "turmaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        },
+        "Planejamento_professorId_fkey": {
+          "name": "Planejamento_professorId_fkey",
+          "tableFrom": "Planejamento",
+          "tableTo": "Professor",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "professorId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "cascade"
+        },
+        "Planejamento_escolaId_fkey": {
+          "name": "Planejamento_escolaId_fkey",
+          "tableFrom": "Planejamento",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.DespesaEscola": {
+      "name": "DespesaEscola",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "escolaId": {
+          "name": "escolaId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descricao": {
+          "name": "descricao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "valor": {
+          "name": "valor",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data": {
+          "name": "data",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "categoria": {
+          "name": "categoria",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'PAGO'"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp(3)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "DespesaEscola_escolaId_idx": {
+          "name": "DespesaEscola_escolaId_idx",
+          "columns": [
+            {
+              "expression": "escolaId",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "DespesaEscola_escolaId_fkey": {
+          "name": "DespesaEscola_escolaId_fkey",
+          "tableFrom": "DespesaEscola",
+          "tableTo": "Escola",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "escolaId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public._DisciplinaToPlanejamento": {
+      "name": "_DisciplinaToPlanejamento",
+      "schema": "",
+      "columns": {
+        "A": {
+          "name": "A",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "B": {
+          "name": "B",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "_DisciplinaToPlanejamento_B_index": {
+          "name": "_DisciplinaToPlanejamento_B_index",
+          "columns": [
+            {
+              "expression": "B",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "text_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_DisciplinaToPlanejamento_A_fkey": {
+          "name": "_DisciplinaToPlanejamento_A_fkey",
+          "tableFrom": "_DisciplinaToPlanejamento",
+          "tableTo": "Disciplina",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "A"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "_DisciplinaToPlanejamento_B_fkey": {
+          "name": "_DisciplinaToPlanejamento_B_fkey",
+          "tableFrom": "_DisciplinaToPlanejamento",
+          "tableTo": "Planejamento",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "B"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "_DisciplinaToPlanejamento_AB_pkey": {
+          "name": "_DisciplinaToPlanejamento_AB_pkey",
+          "columns": [
+            "A",
+            "B"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.MetodoPagamento": {
+      "name": "MetodoPagamento",
+      "values": [
+        "PIX",
+        "BOLETO",
+        "CARTAO",
+        "DINHEIRO",
+        "TRANSFERENCIA"
+      ],
+      "schema": "public"
+    },
+    "public.PapelUsuario": {
+      "name": "PapelUsuario",
+      "values": [
+        "ADMINISTRADOR",
+        "PROFESSOR",
+        "ALUNO",
+        "RESPONSAVEL"
+      ],
+      "schema": "public"
+    },
+    "public.Status": {
+      "name": "Status",
+      "values": [
+        "ATIVO",
+        "SUSPENSO",
+        "INATIVO"
+      ],
+      "schema": "public"
+    },
+    "public.StatusFinanceiro": {
+      "name": "StatusFinanceiro",
+      "values": [
+        "PENDENTE",
+        "PAGO",
+        "ATRASADO",
+        "CANCELADO"
+      ],
+      "schema": "public"
+    },
+    "public.StatusFrequencia": {
+      "name": "StatusFrequencia",
+      "values": [
+        "PRESENTE",
+        "AUSENTE",
+        "ATRASO"
+      ],
+      "schema": "public"
+    },
+    "public.StatusMatricula": {
+      "name": "StatusMatricula",
+      "values": [
+        "ATIVA",
+        "TRANCADA",
+        "TRANSFERIDA",
+        "CONCLUIDA",
+        "CANCELADA"
+      ],
+      "schema": "public"
+    },
+    "public.StatusPlanejamento": {
+      "name": "StatusPlanejamento",
+      "values": [
+        "RASCUNHO",
+        "PENDENTE",
+        "APROVADO",
+        "REJEITADO"
+      ],
+      "schema": "public"
+    },
+    "public.TipoAlerta": {
+      "name": "TipoAlerta",
+      "values": [
+        "INFO",
+        "AVISO",
+        "URGENTE"
+      ],
+      "schema": "public"
+    },
+    "public.TipoAtividade": {
+      "name": "TipoAtividade",
+      "values": [
+        "PROVA",
+        "TRABALHO",
+        "SEMINARIO",
+        "OUTRO",
+        "AULA"
+      ],
+      "schema": "public"
+    },
+    "public.TipoDia": {
+      "name": "TipoDia",
+      "values": [
+        "LETIVO_EXTRA",
+        "NAO_LETIVO_FERIADO",
+        "NAO_LETIVO_RECESSO",
+        "REUNIAO_PEDAGOGICA",
+        "EVENTO_ESCOLAR"
+      ],
+      "schema": "public"
+    },
+    "public.TipoPendencia": {
+      "name": "TipoPendencia",
+      "values": [
+        "MENSALIDADE",
+        "EVENTO",
+        "PRODUTO",
+        "EXTRA",
+        "OUTROS"
+      ],
+      "schema": "public"
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {}
+  }
+}
